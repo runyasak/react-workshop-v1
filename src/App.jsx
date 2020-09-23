@@ -47,10 +47,10 @@ const App = () => {
   return (
     <Layout>
       <Header style={{ color: 'white', fontSize: '24px', textAlign: 'center' }}>
-        React Workshop
+        One Million Store
       </Header>
-      <Content style={{ maxWidth: '1024px', width: '100%', margin: 'auto', padding: '32px' }}>
-        <Input placeholder="Search Products" style={{ borderRadius: '16px' }} />
+      <Content style={{ maxWidth: '1024px', width: '100%', margin: 'auto', padding: '32px', minHeight: 'calc(100vh - 64px)' }}>
+        <Input placeholder="Search Products" style={{ fontSize: '24px' }} />
         {
           mapProducts
             ? <Row style={{ marginTop: '12px' }} gutter={{ xs: 8, sm: 16, md: 24 }}>
