@@ -23,15 +23,23 @@ const App = () => {
   const renderedProducts = mapProducts.map((mapProduct) =>
     <Col
       key={mapProduct.id}
-      span={8}
+      span={24}
+      md={8}
       style={{ marginTop: '12px', marginBottom: '12px' }}>
       <Card
         hoverable
         cover={<img alt={mapProduct.postName} src={mapProduct.images[0]} />}
       >
         <Meta
-          title={mapProduct.postTitle}
-          description={mapProduct.postContent} />
+          title={
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+              <span>{mapProduct.postTitle}</span>
+              <span style={{ fontSize: '24px' }}>${mapProduct.regularPrice || 0}</span>
+            </div>}
+          description={
+            <div className="line-clamp-2">{mapProduct.postContent}</div>
+          }
+        />
       </Card>
     </Col>
   );
