@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import axios from 'axios';
 import { Input, Layout, Row, Col, Card } from 'antd';
-import './styles/App.css';
+import './styles/main.css';
 
 const { Meta } = Card;
 const { Header, Content } = Layout;
