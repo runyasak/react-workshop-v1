@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Input, Row, Col, Card } from 'antd';
+import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
 const { Search } = Input;
@@ -31,22 +32,24 @@ const HomeView = () => {
       span={24}
       md={8}
       style={{ marginTop: '12px', marginBottom: '12px' }}>
-      <Card
-        hoverable
-        cover={<img alt={mapProduct.postName} src={mapProduct.images[0]} />}
-      >
-        <Meta
-          title={
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-              <span>{mapProduct.postTitle}</span>
-              <span style={{ fontSize: '24px' }}>${mapProduct.regularPrice || 0}</span>
-            </div>
-          }
-          description={
-            <div className="line-clamp-2">{mapProduct.postContent}</div>
-          }
-        />
-      </Card>
+      <Link to={`/products/${mapProduct.id}`}>
+        <Card
+          hoverable
+          cover={<img alt={mapProduct.postName} src={mapProduct.images[0]} />}
+        >
+          <Meta
+            title={
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <span>{mapProduct.postTitle}</span>
+                <span style={{ fontSize: '24px' }}>${mapProduct.regularPrice || 0}</span>
+              </div>
+            }
+            description={
+              <div className="line-clamp-2">{mapProduct.postContent}</div>
+            }
+          />
+        </Card>
+      </Link>
     </Col>
   );
 
