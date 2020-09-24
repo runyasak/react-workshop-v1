@@ -3,9 +3,11 @@ import axios from 'axios';
 import { Input, Row, Col, Card } from 'antd';
 
 const { Meta } = Card;
+const { Search } = Input;
 
 const HomeView = () => {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState('');
 
   const initiate = async() => {
     const fetchProducts = await axios.get('https://react-workshop-v1.herokuapp.com/products');
@@ -15,6 +17,11 @@ const HomeView = () => {
   useEffect(() => {
     initiate();
   }, []);
+
+  const onSearchProducts = async(search) => {
+    const { data } = await axios.get('https://react-workshop-v1.herokuapp.com/products', { params: { q: search } });
+    setProducts(data);
+  };
 
   const mapProducts = products.map((product) => ({ ...product, images: product.images.split('|') }));
 
@@ -45,7 +52,14 @@ const HomeView = () => {
 
   return (
     <div className="home-view">
-      <Input placeholder="Search Products" style={{ fontSize: '24px' }} />
+      <Search
+        size="large"
+        placeholder="Search Products"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        onSearch={value => onSearchProducts(value)}
+        enterButton="Search"
+      />
       {
         mapProducts
           ? <Row style={{ marginTop: '12px' }} gutter={{ xs: 8, sm: 16, md: 24 }}>
