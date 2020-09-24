@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
 import axios from 'axios';
 import { Input, Layout, Row, Col, Card } from 'antd';
 import './styles/App.css';
@@ -45,21 +50,30 @@ const App = () => {
   );
 
   return (
-    <Layout>
-      <Header style={{ color: 'white', fontSize: '24px', textAlign: 'center' }}>
-        One Million Store
-      </Header>
-      <Content style={{ maxWidth: '1024px', width: '100%', margin: 'auto', padding: '32px', minHeight: 'calc(100vh - 64px)' }}>
-        <Input placeholder="Search Products" style={{ fontSize: '24px' }} />
-        {
-          mapProducts
-            ? <Row style={{ marginTop: '12px' }} gutter={{ xs: 8, sm: 16, md: 24 }}>
-              {renderedProducts}
-            </Row>
-            : undefined
-        }
-      </Content>
-    </Layout>
+    <Router>
+      <Layout>
+        <Header style={{ color: 'white', fontSize: '24px', textAlign: 'center' }}>
+          One Million Store
+        </Header>
+        <Content style={{ maxWidth: '1024px', width: '100%', margin: 'auto', padding: '32px', minHeight: 'calc(100vh - 64px)' }}>
+          <Switch>
+            <Route path="/products/:id">
+              Product detail
+            </Route>
+            <Route path="/">
+              <Input placeholder="Search Products" style={{ fontSize: '24px' }} />
+              {
+                mapProducts
+                  ? <Row style={{ marginTop: '12px' }} gutter={{ xs: 8, sm: 16, md: 24 }}>
+                    {renderedProducts}
+                  </Row>
+                  : undefined
+              }
+            </Route>
+          </Switch>
+        </Content>
+      </Layout>
+    </Router>
   );
 };
 
