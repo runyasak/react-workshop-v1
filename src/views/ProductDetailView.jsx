@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Row, Col, Image } from 'antd';
+import { Button, Row, Col, Image } from 'antd';
 
 const ProductDetailView = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const history = useHistory();
 
   const initiate = async() => {
     const fetchProductById = await axios.get(`https://react-workshop-v1.herokuapp.com/products/${id}`);
@@ -23,6 +24,12 @@ const ProductDetailView = () => {
 
   return (
     <div className="product-detial-view">
+      <Button
+        type="text"
+        onClick={() => history.goBack()}
+      >
+        {'<'}
+      </Button>
       <Row style={{ marginTop: '12px' }} gutter={{ xs: 8, sm: 16, md: 24 }}>
         <Col span={12}>
           <Image src={mapProduct.images}></Image>
