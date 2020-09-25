@@ -8,14 +8,14 @@ const ProductDetailView = () => {
   const [product, setProduct] = useState(null);
   const history = useHistory();
 
-  const initiate = async() => {
-    const fetchProductById = await axios.get(`https://react-workshop-v1.herokuapp.com/products/${id}`);
-    setProduct(fetchProductById.data);
-  };
-
   useEffect(() => {
+    const initiate = async() => {
+      const fetchProductById = await axios.get(`https://react-workshop-v1.herokuapp.com/products/${id}`);
+      setProduct(fetchProductById.data);
+    };
+
     initiate();
-  }, []);
+  }, [id]);
 
   const mapProduct = {
     ...product,
